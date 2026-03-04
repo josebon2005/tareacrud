@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Catedráticos</title>
+</head>
+<body>
+
+<h1>Lista de Catedráticos</h1>
+
+<a href="{% url 'catedratico:create' %}">Crear Catedrático</a>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Acciones</th>
+    </tr>
+
+    {% for c in catedraticos %}
+    <tr>
+        <td>{{ c.id }}</td>
+        <td>{{ c.nombre }}</td>
+        <td>{{ c.email }}</td>
+        <td>
+            <a href="{% url 'catedratico:edit' c.id %}">Editar</a>
+            <a href="{% url 'catedratico:delete' c.id %}">Eliminar</a>
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="4">No hay catedráticos registrados</td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+</body>
+</html>
