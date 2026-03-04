@@ -18,13 +18,15 @@ class Alumno(models.Model):
         db_table = 'alumno'
 
 
-
 class Curso(models.Model):
     nombre = models.CharField(max_length=100)
     creditos = models.IntegerField()
 
     def __str__(self):
         return self.nombre
+
+    class Meta:
+        db_table = 'curso'
 
 
 class Catedratico(models.Model):
@@ -33,6 +35,9 @@ class Catedratico(models.Model):
 
     def __str__(self):
         return self.nombre
+
+    class Meta:
+        db_table = 'catedratico'
 
 
 class AsignacionCurso(models.Model):
@@ -43,6 +48,9 @@ class AsignacionCurso(models.Model):
     def __str__(self):
         return f"{self.curso} - {self.catedratico}"
 
+    class Meta:
+        db_table = 'asignacion_curso'
+
 
 class InscripcionAlumno(models.Model):
     alumno = models.ForeignKey(Alumno, on_delete=models.CASCADE)
@@ -52,6 +60,9 @@ class InscripcionAlumno(models.Model):
     def __str__(self):
         return f"{self.alumno} - {self.curso}"
 
+    class Meta:
+        db_table = 'inscripcion_alumno'
+
 
 class Notas(models.Model):
     alumno = models.ForeignKey(Alumno, on_delete=models.CASCADE)
@@ -60,3 +71,6 @@ class Notas(models.Model):
 
     def __str__(self):
         return f"{self.alumno} - {self.curso} - {self.nota}"
+
+    class Meta:
+        db_table = 'notas'
