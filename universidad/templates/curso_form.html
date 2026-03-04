@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <h2>Curso</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label class="form-label">Nombre</label>
+            <input type="text" name="nombre" class="form-control"
+                   value="{{ curso.nombre|default:'' }}">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Créditos</label>
+            <input type="number" name="creditos" class="form-control"
+                   value="{{ curso.creditos|default:'' }}">
+        </div>
+
+        <button type="submit" class="btn btn-success">
+            Guardar
+        </button>
+
+        <a href="{% url 'curso:list' %}" class="btn btn-secondary">
+            Cancelar
+        </a>
+    </form>
+</div>
+
+{% endblock %}

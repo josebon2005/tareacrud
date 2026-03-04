@@ -1,9 +1,10 @@
 from django import forms
-from .models import Alumno
+from .models import Alumno, Curso
+
 
 class AlumnoForm(forms.ModelForm):
     class Meta:
-        model  = Alumno
+        model = Alumno
         fields = [
             'first_name',
             'last_name',
@@ -13,8 +14,6 @@ class AlumnoForm(forms.ModelForm):
             'birth_date',
             'is_active',
         ]
-        # id → auto, no se incluye
-        # enrolled_at → auto_now_add=True, no se incluye
 
         widgets = {
             'first_name': forms.TextInput(attrs={
@@ -43,5 +42,22 @@ class AlumnoForm(forms.ModelForm):
             }),
             'is_active': forms.CheckboxInput(attrs={
                 'class': 'form-check-input'
+            }),
+        }
+
+
+class CursoForm(forms.ModelForm):
+    class Meta:
+        model = Curso
+        fields = ['nombre', 'creditos']
+
+        widgets = {
+            'nombre': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Nombre del curso'
+            }),
+            'creditos': forms.NumberInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Créditos'
             }),
         }
