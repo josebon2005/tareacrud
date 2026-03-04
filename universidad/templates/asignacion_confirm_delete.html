@@ -1,0 +1,11 @@
+<h1>Eliminar Asignación</h1>
+
+<p>¿Seguro que deseas eliminar esta asignación?</p>
+
+<p><b>{{ asignacion.curso }}</b> - <b>{{ asignacion.catedratico }}</b> ({{ asignacion.horario }})</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Sí, eliminar</button>
+    <a href="{% url 'asignacion:list' %}">Cancelar</a>
+</form>

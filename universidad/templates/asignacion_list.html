@@ -1,0 +1,30 @@
+<h1>Lista de Asignaciones</h1>
+
+<p><a href="{% url 'asignacion:create' %}">Crear Asignación</a></p>
+
+<table border="1" cellpadding="5">
+    <tr>
+        <th>ID</th>
+        <th>Curso</th>
+        <th>Catedrático</th>
+        <th>Horario</th>
+        <th>Acciones</th>
+    </tr>
+
+    {% for a in asignaciones %}
+    <tr>
+        <td>{{ a.id }}</td>
+        <td>{{ a.curso }}</td>
+        <td>{{ a.catedratico }}</td>
+        <td>{{ a.horario }}</td>
+        <td>
+            <a href="{% url 'asignacion:edit' a.id %}">Editar</a>
+            <a href="{% url 'asignacion:delete' a.id %}">Eliminar</a>
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="5">No hay asignaciones registradas</td>
+    </tr>
+    {% endfor %}
+</table>

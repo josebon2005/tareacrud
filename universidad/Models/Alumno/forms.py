@@ -1,6 +1,5 @@
 from django import forms
-from .models import Alumno, Curso
-
+from .models import Alumno
 
 class AlumnoForm(forms.ModelForm):
     class Meta:
@@ -14,50 +13,15 @@ class AlumnoForm(forms.ModelForm):
             'birth_date',
             'is_active',
         ]
-
         widgets = {
-            'first_name': forms.TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'Nombre'
-            }),
-            'last_name': forms.TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'Apellido'
-            }),
-            'email': forms.EmailInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'correo@ejemplo.com'
-            }),
-            'phone': forms.TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'Teléfono (opcional)'
-            }),
+            'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Apellido'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'correo@ejemplo.com'}),
+            'phone': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Teléfono (opcional)'}),
             'gender': forms.Select(
-                choices=[('', '-- Seleccionar --'), ('M', 'Masculino'), ('F', 'Femenino')],
+                choices=[('M', 'Masculino'), ('F', 'Femenino')],
                 attrs={'class': 'form-select'}
             ),
-            'birth_date': forms.DateInput(attrs={
-                'class': 'form-control',
-                'type': 'date'
-            }),
-            'is_active': forms.CheckboxInput(attrs={
-                'class': 'form-check-input'
-            }),
-        }
-
-
-class CursoForm(forms.ModelForm):
-    class Meta:
-        model = Curso
-        fields = ['nombre', 'creditos']
-
-        widgets = {
-            'nombre': forms.TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'Nombre del curso'
-            }),
-            'creditos': forms.NumberInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'Créditos'
-            }),
+            'birth_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'is_active': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
         }

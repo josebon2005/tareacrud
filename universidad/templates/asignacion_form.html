@@ -1,0 +1,20 @@
+<h1>Asignación</h1>
+
+<form method="post">
+    {% csrf_token %}
+    <p>
+        {{ form.curso.label_tag }}<br>
+        {{ form.curso }}
+    </p>
+    <p>
+        {{ form.catedratico.label_tag }}<br>
+        {{ form.catedratico }}
+    </p>
+    <p>
+        {{ form.horario.label_tag }}<br>
+        {{ form.horario }}
+    </p>
+
+    <button type="submit">Guardar</button>
+    <a href="{% url 'asignacion:list' %}">Cancelar</a>
+</form>

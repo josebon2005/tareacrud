@@ -9,4 +9,5 @@ urlpatterns = [
     path('alumnos/', include('universidad.Models.Alumno.urls')),
     path('cursos/', include('curso.urls')),
     path('catedraticos/', include('catedratico.urls')),
+    path('asignaciones/', include('asignacion_curso.urls')),
 ]
