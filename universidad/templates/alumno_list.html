@@ -1,0 +1,16 @@
+<h1>Lista de Alumnos</h1>
+
+<a href="{% url 'alumno:create' %}">Crear Alumno</a>
+
+<ul>
+    {% for alumno in alumnos %}
+        <li>
+            {{ alumno.first_name }} {{ alumno.last_name }}
+            <a href="{% url 'alumno:detail' alumno.pk %}">Ver</a>
+            <a href="{% url 'alumno:edit' alumno.pk %}">Editar</a>
+            <a href="{% url 'alumno:delete' alumno.pk %}">Eliminar</a>
+        </li>
+    {% empty %}
+        <li>No hay alumnos registrados.</li>
+    {% endfor %}
+</ul>
