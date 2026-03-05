@@ -1,0 +1,12 @@
+<h1>Eliminar Inscripción</h1>
+
+<p>¿Seguro que deseas eliminar esta inscripción?</p>
+
+<form method="POST">
+{% csrf_token %}
+
+<button type="submit">Eliminar</button>
+
+<a href="/inscripciones/">Cancelar</a>
+
+</form>

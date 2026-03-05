@@ -1,0 +1,28 @@
+<h1>Notas</h1>
+
+<a href="{% url 'notas_create' %}">Nueva Nota</a>
+
+<table border="1">
+<tr>
+<th>ID</th>
+<th>Alumno</th>
+<th>Asignación</th>
+<th>Nota</th>
+<th>Acciones</th>
+</tr>
+
+{% for n in notas %}
+<tr>
+<td>{{ n.id }}</td>
+<td>{{ n.alumno }}</td>
+<td>{{ n.asignacion }}</td>
+<td>{{ n.nota }}</td>
+
+<td>
+<a href="{% url 'notas_edit' n.id %}">Editar</a>
+<a href="{% url 'notas_delete' n.id %}">Eliminar</a>
+</td>
+</tr>
+{% endfor %}
+
+</table>

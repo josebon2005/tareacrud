@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'curso',   
     'catedratico',   
     'asignacion_curso',   
+    'inscripcion_alumno',   
+    'notas',   
     'core',
 ]
 
