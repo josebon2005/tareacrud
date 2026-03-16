@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}JP University{% endblock %}</title>
 
-    <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
 
     <style>
@@ -21,7 +19,6 @@
             background: #f1f5f9;
         }
 
-        /* ══════════════ SIDEBAR ══════════════ */
         #sidebar {
             width: 240px;
             min-height: 100vh;
@@ -99,7 +96,6 @@
             text-align: center;
         }
 
-        /* ══════════════ CONTENIDO PRINCIPAL ══════════════ */
         #main-content {
             margin-left: 240px;
             flex: 1;
@@ -108,7 +104,6 @@
             min-height: 100vh;
         }
 
-        /* ══════════════ TOPBAR ══════════════ */
         #topbar {
             background: #fff;
             padding: 0.8rem 1.8rem;
@@ -145,13 +140,11 @@
             border-radius: 50%;
         }
 
-        /* ══════════════ CONTENIDO ══════════════ */
         .page-wrapper {
             padding: 1.8rem;
             flex: 1;
         }
 
-        /* ══════════════ ALERTS ══════════════ */
         .alerts-wrapper {
             padding: 0.8rem 1.8rem 0;
         }
@@ -161,32 +154,47 @@
 </head>
 <body>
 
-<!-- ══════════════════════ SIDEBAR ══════════════════════ -->
 <nav id="sidebar">
-
     <div class="sidebar-brand">
         <i class="bi bi-mortarboard-fill"></i>
         JP University
     </div>
 
     <div class="nav-section">Principal</div>
-    <a href="{% url 'dashboard' %}"
-       class="nav-link {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">
+    <a href="/" class="nav-link {% if request.path == '/' %}active{% endif %}">
         <i class="bi bi-speedometer2"></i> Dashboard
     </a>
 
     <div class="nav-section">Académico</div>
+
     <a href="{% url 'alumno:list' %}"
        class="nav-link {% if request.resolver_match.namespace == 'alumno' %}active{% endif %}">
         <i class="bi bi-people-fill"></i> Alumnos
     </a>
 
-    <!-- Módulos futuros -->
-    <a href="#" class="nav-link">
+    <a href="{% url 'curso:list' %}"
+       class="nav-link {% if request.resolver_match.namespace == 'curso' %}active{% endif %}">
         <i class="bi bi-journal-bookmark-fill"></i> Cursos
     </a>
-    <a href="#" class="nav-link">
-        <i class="bi bi-clipboard2-check-fill"></i> Calificaciones
+
+    <a href="{% url 'catedratico:list' %}"
+       class="nav-link {% if request.resolver_match.namespace == 'catedratico' %}active{% endif %}">
+        <i class="bi bi-person-badge-fill"></i> Catedráticos
+    </a>
+
+    <a href="{% url 'asignacion:list' %}"
+       class="nav-link {% if request.resolver_match.namespace == 'asignacion' %}active{% endif %}">
+        <i class="bi bi-calendar-check-fill"></i> Asignaciones
+    </a>
+
+    <a href="{% url 'inscripcion_list' %}"
+       class="nav-link {% if 'inscripciones' in request.path %}active{% endif %}">
+        <i class="bi bi-pencil-square"></i> Inscripciones
+    </a>
+
+    <a href="{% url 'notas_list' %}"
+       class="nav-link {% if 'notas' in request.path %}active{% endif %}">
+        <i class="bi bi-clipboard2-check-fill"></i> Notas
     </a>
 
     <div class="nav-section">Sistema</div>
@@ -197,27 +205,21 @@
     <div class="sidebar-footer">
         JP University &copy; {% now "Y" %}
     </div>
-
 </nav>
 
-<!-- ══════════════════════ CONTENIDO PRINCIPAL ══════════════════════ -->
 <div id="main-content">
-
-    <!-- Topbar -->
     <div id="topbar">
         <h6 class="page-heading">{% block page_title %}Panel{% endblock %}</h6>
         <div class="topbar-right">
             <span class="user-name">Administrador</span>
-            <img src="https://ui-avatars.com/api/?name=Admin&background=3b82f6&color=fff">
+            <img src="https://ui-avatars.com/api/?name=Admin&background=3b82f6&color=fff" alt="Admin">
         </div>
     </div>
 
-    <!-- Mensajes Flash (success, error, etc.) -->
     {% if messages %}
     <div class="alerts-wrapper">
         {% for message in messages %}
         <div class="alert alert-{{ message.tags }} alert-dismissible fade show mb-2" role="alert">
-            <i class="bi bi-{% if message.tags == 'success' %}check-circle{% else %}exclamation-triangle{% endif %}-fill me-2"></i>
             {{ message }}
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
@@ -225,14 +227,11 @@
     </div>
     {% endif %}
 
-    <!-- Contenido de cada página -->
     <div class="page-wrapper">
         {% block content %}{% endblock %}
     </div>
-
 </div>
 
-<!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 {% block extra_js %}{% endblock %}
 </body>

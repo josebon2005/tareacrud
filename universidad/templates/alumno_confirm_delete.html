@@ -1,10 +1,19 @@
-<h1>Eliminar Alumno</h1>
+{% extends "base.html" %}
 
-<p>¿Estás seguro que deseas eliminar a {{ alumno.first_name }} {{ alumno.last_name }}?</p>
+{% block title %}Alumnos{% endblock %}
+{% block page_title %}Alumnos{% endblock %}
 
-<form method="post">
-    {% csrf_token %}
-    <button type="submit">Sí, eliminar</button>
-</form>
+{% block content %}
+<div class="card shadow-sm border-0">
+    <div class="card-body">
+        <h4>Eliminar Alumno</h4>
+        <p>¿Seguro que deseas eliminar a <strong>{{ alumno.first_name }} {{ alumno.last_name }}</strong>?</p>
 
-<a href="{% url 'alumno:list' %}">Cancelar</a>
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+            <a href="{% url 'alumno:list' %}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

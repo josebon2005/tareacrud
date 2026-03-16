@@ -36,9 +36,7 @@
                 <tr>
 
                     <td>{{ alumno.first_name }} {{ alumno.last_name }}</td>
-
                     <td>{{ alumno.email }}</td>
-
                     <td>{{ alumno.phone }}</td>
 
                     <td>
@@ -50,24 +48,15 @@
                     </td>
 
                     <td class="text-end">
-
-                        <a href="{% url 'alumno:edit' alumno.id %}" class="btn btn-warning btn-sm">
-                            Editar
-                        </a>
-
-                        <a href="{% url 'alumno:delete' alumno.id %}" class="btn btn-danger btn-sm">
-                            Eliminar
-                        </a>
-
+                        <a href="{% url 'alumno:edit' alumno.id %}" class="btn btn-warning btn-sm">Editar</a>
+                        <a href="{% url 'alumno:delete' alumno.id %}" class="btn btn-danger btn-sm">Eliminar</a>
                     </td>
 
                 </tr>
                 {% empty %}
-
                 <tr>
                     <td colspan="5" class="text-center">No hay alumnos registrados</td>
                 </tr>
-
                 {% endfor %}
 
                 </tbody>

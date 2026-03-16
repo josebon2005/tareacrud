@@ -1,42 +1,56 @@
 {% extends "base.html" %}
 
+{% block title %}Cursos{% endblock %}
+{% block page_title %}Cursos{% endblock %}
+
 {% block content %}
 
-<div class="container mt-4">
-    <h2>Cursos</h2>
+<div class="card shadow-sm border-0">
 
-    <a href="{% url 'curso:create' %}" class="btn btn-primary mb-3">
-        Crear Curso
-    </a>
+    <div class="card-body">
 
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Créditos</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4 class="mb-0">Lista de Cursos</h4>
 
-        <tbody>
-        {% for curso in cursos %}
-            <tr>
-                <td>{{ curso.id }}</td>
-                <td>{{ curso.nombre }}</td>
-                <td>{{ curso.creditos }}</td>
-                <td>
-                    <a href="{% url 'curso:edit' curso.id %}" class="btn btn-warning btn-sm">Editar</a>
-                    <a href="{% url 'curso:delete' curso.id %}" class="btn btn-danger btn-sm">Eliminar</a>
-                </td>
-            </tr>
-        {% empty %}
-            <tr>
-                <td colspan="4">No hay cursos registrados</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            <a href="{% url 'curso:create' %}" class="btn btn-primary btn-sm">
+                <i class="bi bi-plus-circle"></i> Nuevo Curso
+            </a>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+
+                <thead class="table-light">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Créditos</th>
+                        <th class="text-end">Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                {% for curso in cursos %}
+                <tr>
+                    <td>{{ curso.nombre }}</td>
+                    <td>{{ curso.creditos }}</td>
+                    <td class="text-end">
+                        <a href="{% url 'curso:edit' curso.id %}" class="btn btn-warning btn-sm">Editar</a>
+                        <a href="{% url 'curso:delete' curso.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="3" class="text-center">No hay cursos registrados</td>
+                </tr>
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
 
 </div>
 

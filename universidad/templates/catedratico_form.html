@@ -1,21 +1,22 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>{% if form.instance.pk %}Editar{% else %}Crear{% endif %} Catedrático</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-<h1>{% if form.instance.pk %}Editar{% else %}Crear{% endif %} Catedrático</h1>
+{% block title %}Catedráticos{% endblock %}
+{% block page_title %}Catedráticos{% endblock %}
 
-<form method="post">
-    {% csrf_token %}
-    <table>
-        {{ form.as_table }}
-    </table>
-    <button type="submit">Guardar</button>
-    <a href="{% url 'catedratico:list' %}">Cancelar</a>
-</form>
+{% block content %}
 
-</body>
-</html>
+<div class="card shadow-sm border-0">
+    <div class="card-body">
+        <h4 class="mb-4">Formulario Catedrático</h4>
+
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <button type="submit" class="btn btn-success">Guardar</button>
+            <a href="{% url 'catedratico:list' %}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

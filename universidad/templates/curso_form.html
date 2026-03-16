@@ -1,33 +1,22 @@
 {% extends "base.html" %}
 
+{% block title %}Cursos{% endblock %}
+{% block page_title %}Cursos{% endblock %}
+
 {% block content %}
 
-<div class="container mt-4">
-    <h2>Curso</h2>
+<div class="card shadow-sm border-0">
+    <div class="card-body">
+        <h4 class="mb-4">Formulario Curso</h4>
 
-    <form method="POST">
-        {% csrf_token %}
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
 
-        <div class="mb-3">
-            <label class="form-label">Nombre</label>
-            <input type="text" name="nombre" class="form-control"
-                   value="{{ curso.nombre|default:'' }}">
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Créditos</label>
-            <input type="number" name="creditos" class="form-control"
-                   value="{{ curso.creditos|default:'' }}">
-        </div>
-
-        <button type="submit" class="btn btn-success">
-            Guardar
-        </button>
-
-        <a href="{% url 'curso:list' %}" class="btn btn-secondary">
-            Cancelar
-        </a>
-    </form>
+            <button type="submit" class="btn btn-success">Guardar</button>
+            <a href="{% url 'curso:list' %}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
 </div>
 
 {% endblock %}
