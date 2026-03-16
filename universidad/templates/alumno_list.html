@@ -1,16 +1,82 @@
-<h1>Lista de Alumnos</h1>
+{% extends "base.html" %}
 
-<a href="{% url 'alumno:create' %}">Crear Alumno</a>
+{% block title %}Alumnos{% endblock %}
+{% block page_title %}Alumnos{% endblock %}
 
-<ul>
-    {% for alumno in alumnos %}
-        <li>
-            {{ alumno.first_name }} {{ alumno.last_name }}
-            <a href="{% url 'alumno:detail' alumno.pk %}">Ver</a>
-            <a href="{% url 'alumno:edit' alumno.pk %}">Editar</a>
-            <a href="{% url 'alumno:delete' alumno.pk %}">Eliminar</a>
-        </li>
-    {% empty %}
-        <li>No hay alumnos registrados.</li>
-    {% endfor %}
-</ul>
+{% block content %}
+
+<div class="card shadow-sm border-0">
+
+    <div class="card-body">
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4 class="mb-0">Lista de Alumnos</h4>
+
+            <a href="{% url 'alumno:create' %}" class="btn btn-primary btn-sm">
+                <i class="bi bi-plus-circle"></i> Nuevo Alumno
+            </a>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+
+                <thead class="table-light">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>Teléfono</th>
+                        <th>Estado</th>
+                        <th class="text-end">Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                {% for alumno in alumnos %}
+                <tr>
+
+                    <td>{{ alumno.first_name }} {{ alumno.last_name }}</td>
+
+                    <td>{{ alumno.email }}</td>
+
+                    <td>{{ alumno.phone }}</td>
+
+                    <td>
+                        {% if alumno.is_active %}
+                            <span class="badge bg-success">Activo</span>
+                        {% else %}
+                            <span class="badge bg-danger">Inactivo</span>
+                        {% endif %}
+                    </td>
+
+                    <td class="text-end">
+
+                        <a href="{% url 'alumno:edit' alumno.id %}" class="btn btn-warning btn-sm">
+                            Editar
+                        </a>
+
+                        <a href="{% url 'alumno:delete' alumno.id %}" class="btn btn-danger btn-sm">
+                            Eliminar
+                        </a>
+
+                    </td>
+
+                </tr>
+                {% empty %}
+
+                <tr>
+                    <td colspan="5" class="text-center">No hay alumnos registrados</td>
+                </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
