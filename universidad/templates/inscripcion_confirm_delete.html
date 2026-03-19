@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Inscripciones{% endblock %}
+{% block page_title %}Inscripciones{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm border-0">
+    <div class="card-body">
+        <h4>Eliminar Inscripción</h4>
+
+        <p>¿Seguro que deseas eliminar la inscripción de <strong>{{ inscripcion.alumno }}</strong>?</p>
+
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+            <a href="{% url 'inscripcion_list' %}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

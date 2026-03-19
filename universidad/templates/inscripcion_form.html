@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Inscripciones{% endblock %}
+{% block page_title %}Inscripciones{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm border-0">
+    <div class="card-body">
+        <h4 class="mb-4">Formulario Inscripción</h4>
+
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <button type="submit" class="btn btn-success">Guardar</button>
+            <a href="{% url 'inscripcion_list' %}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
+{% endblock %}
