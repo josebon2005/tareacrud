@@ -1,20 +1,22 @@
-<h1>Asignación</h1>
+{% extends "base.html" %}
 
-<form method="post">
-    {% csrf_token %}
-    <p>
-        {{ form.curso.label_tag }}<br>
-        {{ form.curso }}
-    </p>
-    <p>
-        {{ form.catedratico.label_tag }}<br>
-        {{ form.catedratico }}
-    </p>
-    <p>
-        {{ form.horario.label_tag }}<br>
-        {{ form.horario }}
-    </p>
+{% block title %}Asignaciones{% endblock %}
+{% block page_title %}Asignaciones{% endblock %}
 
-    <button type="submit">Guardar</button>
-    <a href="{% url 'asignacion:list' %}">Cancelar</a>
-</form>
+{% block content %}
+
+<div class="card shadow-sm border-0">
+    <div class="card-body">
+        <h4 class="mb-4">Formulario Asignación</h4>
+
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <button type="submit" class="btn btn-success">Guardar</button>
+            <a href="{% url 'asignacion:list' %}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

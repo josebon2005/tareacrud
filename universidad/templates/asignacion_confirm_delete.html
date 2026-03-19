@@ -1,11 +1,32 @@
-<h1>Eliminar Asignación</h1>
+{% extends "base.html" %}
 
-<p>¿Seguro que deseas eliminar esta asignación?</p>
+{% block title %}Asignaciones{% endblock %}
+{% block page_title %}Asignaciones{% endblock %}
 
-<p><b>{{ asignacion.curso }}</b> - <b>{{ asignacion.catedratico }}</b> ({{ asignacion.horario }})</p>
+{% block content %}
 
-<form method="post">
-    {% csrf_token %}
-    <button type="submit">Sí, eliminar</button>
-    <a href="{% url 'asignacion:list' %}">Cancelar</a>
-</form>
+<div class="card shadow-sm border-0">
+    <div class="card-body">
+
+        <h4>Eliminar Asignación</h4>
+
+        <p>
+            ¿Seguro que deseas eliminar la asignación
+            <strong>{{ asignacion.curso }}</strong> -
+            <strong>{{ asignacion.catedratico }}</strong>?
+        </p>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+
+            <a href="{% url 'asignacion:list' %}" class="btn btn-secondary">
+                Cancelar
+            </a>
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
