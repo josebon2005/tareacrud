@@ -1,9 +1,56 @@
-<h1>Formulario Alumno</h1>
+{% extends "base.html" %}
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Guardar</button>
-</form>
+{% block title %}Formulario Alumno{% endblock %}
+{% block page_title %}Alumnos{% endblock %}
 
-<a href="{% url 'alumno:list' %}">Volver</a>
+{% block content %}
+<div class="card shadow-sm border-0">
+    <div class="card-body">
+        <h4 class="mb-4">Formulario Alumno</h4>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Nombre</label>
+                    {{ form.first_name }}
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Apellido</label>
+                    {{ form.last_name }}
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Correo</label>
+                    {{ form.email }}
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Teléfono</label>
+                    {{ form.phone }}
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Género</label>
+                    {{ form.gender }}
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Fecha de nacimiento</label>
+                    {{ form.birth_date }}
+                </div>
+
+                <div class="col-md-12 mb-3 form-check">
+                    {{ form.is_active }}
+                    <label class="form-check-label ms-2">Activo</label>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-success">Guardar</button>
+            <a href="{% url 'alumno:list' %}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
+{% endblock %}
