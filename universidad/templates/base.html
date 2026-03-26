@@ -196,6 +196,15 @@
        class="nav-link {% if 'notas' in request.path %}active{% endif %}">
         <i class="bi bi-clipboard2-check-fill"></i> Notas
     </a>
+    <div class="nav-section">Reportes</div>
+
+    <a href="{% url 'reporte_alumnos_cursos' %}" class="nav-link">
+        <i class="bi bi-bar-chart-line-fill"></i> Reporte 1
+    </a>
+
+    <a href="{% url 'reporte_cursos_inscritos' %}" class="nav-link">
+        <i class="bi bi-bar-chart-fill"></i> Reporte 2
+    </a>
 
     <div class="nav-section">Sistema</div>
     <a href="#" class="nav-link">
